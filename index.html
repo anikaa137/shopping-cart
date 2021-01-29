@@ -25,9 +25,9 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button //id="phone-decrease" onclick="handlePhoneChange (false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button //id="phone-decrease" onclick="handleProductChange('phone',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id = "phone-count" type="text" class="form-control text-center" value="1">
-                           <button //id="phone-increase" onclick=" handlePhoneChange (true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button //id="phone-increase" onclick=" handleProductChange('phone',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5 id="phone-total">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button //id="case-decrease" onclick="handleCaseChange(false)"; class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button //id="case-decrease" onclick="handleProductChange('case',false)"; class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id = "case-count"  type="text" class="form-control text-center" value="1">
-                           <button //id = "case-increase" onclick = "handleCaseChange(true)"; class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button //id = "case-increase" onclick = "handleProductChange('case', true)"; class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id = "case-total">$59</h5>
@@ -78,6 +78,29 @@
       </div>
    </section>
    <script>
+      
+      function handleProductChange (product, isIncrease){
+         const productInput = document.getElementById(product +'-count');
+         const productCount = parseInt(productInput.value)
+         // const caseNewCount = caseCount - 1;
+         let productNewCount = productCount;
+         if(isIncrease == true){
+            productNewCount = productCount + 1;
+         }
+         if(isIncrease == false && productCount > 0){
+            productNewCount = productCount - 1;
+         }
+         productInput.value = productNewCount;
+         // const productTotal = productNewCount * 59;
+         let productTotal = 0;
+         if(product == "phone"){
+            productTotal = productNewCount * 1219;
+         }
+         if(product == "case"){
+            productTotal = productNewCount*59;
+         }
+         document.getElementById(product + '-total').innerText = '$' + productTotal
+      }
       // document.getElementById('case-increase').addEventListener('click', function(){
       //    handleProductChange (true);
       // });
@@ -87,21 +110,21 @@
       // });
 
 
-      function handleCaseChange (isIncrease){
-         const caseInput = document.getElementById('case-count');
-         const caseCount = parseInt(caseInput.value)
-         // const caseNewCount = caseCount - 1;
-         let caseNewCount = caseCount;
-         if(isIncrease == true){
-            caseNewCount = caseCount + 1;
-         }
-         if(isIncrease == false && caseCount > 0){
-            caseNewCount = caseCount - 1;
-         }
-         caseInput.value = caseNewCount;
-         const caseTotal = caseNewCount * 59;
-         document.getElementById('case-total').innerText = '$' + caseTotal
-      }
+      // function handleCaseChange (isIncrease){
+      //    const caseInput = document.getElementById('case-count');
+      //    const caseCount = parseInt(caseInput.value)
+      //    // const caseNewCount = caseCount - 1;
+      //    let caseNewCount = caseCount;
+      //    if(isIncrease == true){
+      //       caseNewCount = caseCount + 1;
+      //    }
+      //    if(isIncrease == false && caseCount > 0){
+      //       caseNewCount = caseCount - 1;
+      //    }
+      //    caseInput.value = caseNewCount;
+      //    const caseTotal = caseNewCount * 59;
+      //    document.getElementById('case-total').innerText = '$' + caseTotal
+      // }
    //   document.getElementById('case-increase').addEventListener('click',function(){
    //    //   console.log('plus clicked')
    //    const caseInput  = document.getElementById('case-count') //id dore anlam.
@@ -137,24 +160,24 @@
          //    handleChange (false)
          // })
          
-         function handlePhoneChange (isIncrease) {
-             console.log('phone increase button')
-            const  phoneInput  = document.getElementById("phone-count");
-            // console.log(phoneInput.value)
-            const phoneCount = parseInt(phoneInput.value)
-            // const phoneNewCount = phoneCount + 1;
-            let phoneNewCount  = phoneCount
-            if(isIncrease == true){
-               phoneNewCount = phoneCount + 1;
-            }
-            if(isIncrease == false && phoneCount > 0){
-               phoneNewCount = phoneCount - 1;
-            }
-            phoneInput.value = phoneNewCount;
+         // function handlePhoneChange (isIncrease) {
+         //     console.log('phone increase button')
+         //    const  phoneInput  = document.getElementById("phone-count");
+         //    // console.log(phoneInput.value)
+         //    const phoneCount = parseInt(phoneInput.value)
+         //    // const phoneNewCount = phoneCount + 1;
+         //    let phoneNewCount  = phoneCount
+         //    if(isIncrease == true){
+         //       phoneNewCount = phoneCount + 1;
+         //    }
+         //    if(isIncrease == false && phoneCount > 0){
+         //       phoneNewCount = phoneCount - 1;
+         //    }
+         //    phoneInput.value = phoneNewCount;
 
-            const phoneTotal = phoneNewCount * 1219;
-            document.getElementById("phone-total").innerText = "$" + phoneTotal;
-         }
+         //    const phoneTotal = phoneNewCount * 1219;
+         //    document.getElementById("phone-total").innerText = "$" + phoneTotal;
+         // }
 
 
          
